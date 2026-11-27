@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPITOME — History</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Oswald:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: linear-gradient(135deg, #E5C150 0%, #C7A846 100%);
+      font-family: 'Times New Roman', Times, serif;
+      color: #1f1a0d;
+      overflow-x: hidden;
+    }
+
+    /* Keyframe Animations */
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .history-page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 48px 90px;
+    }
+
+    /* Top Bar: Back Button + Circular Logo Below It on Left, Title Beside */
+    .top-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      animation: fadeSlideDown 0.7s ease-out both;
+    }
+
+    .nav-badge-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      background-color: #1f1a0d;
+      color: #DFC878;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 2px solid #DFC878;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus-visible {
+      background-color: #DFC878;
+      color: #1f1a0d;
+      transform: translateX(-4px);
+    }
+
+    .circle-badge {
+      width: clamp(115px, 13vw, 170px);
+      height: clamp(115px, 13vw, 170px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #1f1a0d;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .title-and-story {
+      flex: 1;
+      min-width: 280px;
+      max-width: 920px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: #1f1a0d;
+      text-shadow: 0 3px 12px rgba(255, 255, 255, 0.25);
+    }
+
+    .history-story {
+      margin: 26px 0 0;
+      padding: 26px 30px;
+      background: rgba(25, 20, 10, 0.86);
+      border-left: 6px solid #DFC878;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(1.1rem, 1.55vw, 1.32rem);
+      line-height: 1.65;
+      color: #ffffff;
+      animation: fadeSlideUp 0.85s ease-out 0.15s both;
+    }
+
+    .history-story p {
+      margin: 0 0 16px;
+    }
+
+    .history-story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight-gold {
+      color: #DFC878;
+      font-weight: bold;
+    }
+
+    /* Seven Large Polaroids Grid */
+    .polaroid-gallery {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 42px 34px;
+      align-items: start;
+    }
+
+    .polaroid {
+      background: #fdfbf7;
+      padding: 18px 18px 26px;
+      border-radius: 4px;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
+      transform: rotate(var(--tilt, 0deg));
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+      animation: fadeSlideUp 0.75s ease-out both;
+      animation-delay: var(--delay, 0.2s);
+    }
+
+    /* Subtle natural polaroid tilts */
+    .polaroid:nth-child(1) { --tilt: -1.8deg; --delay: 0.20s; }
+    .polaroid:nth-child(2) { --tilt: 1.4deg;  --delay: 0.28s; }
+    .polaroid:nth-child(3) { --tilt: -1.2deg; --delay: 0.36s; }
+    .polaroid:nth-child(4) { --tilt: 1.9deg;  --delay: 0.44s; }
+    .polaroid:nth-child(5) { --tilt: -1.6deg; --delay: 0.52s; }
+    .polaroid:nth-child(6) { --tilt: 1.2deg;  --delay: 0.60s; }
+    .polaroid:nth-child(7) { --tilt: -1.4deg; --delay: 0.68s; }
+
+    .polaroid:hover {
+      transform: rotate(0deg) translateY(-10px) scale(1.03);
+      box-shadow: 0 24px 46px rgba(0, 0, 0, 0.42);
+      z-index: 5;
+    }
+
+    .polaroid-photo-frame {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #231f16;
+      overflow: hidden;
+      border: 1px solid #e2ddd2;
+    }
+
+    .polaroid-photo-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .polaroid:hover .polaroid-photo-frame img {
+      transform: scale(1.05);
+    }
+
+    .polaroid-caption {
+      margin: 18px 4px 0;
+      text-align: center;
+      font-family: 'Caveat', 'Poppins', cursive, sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #231f16;
+    }
+
+    .polaroid-subcaption {
+      display: block;
+      margin-top: 4px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #6b6251;
+    }
+
+    @media (max-width: 720px) {
+      .history-page {
+        padding: 28px 20px 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="history-page">
+    <div class="top-header">
+      <div class="nav-badge-column">
+        <!-- Update href to match your main HTML filename (e.g., "index.html" or "totoo na.html") -->
+        <a href="totoo na.html" class="back-btn">&larr; Back to Main</a>
+
+        <img
+          src="epitomesakalamm.jpg"
+          alt="EPITOME circular badge"
+          class="circle-badge"
+        >
+      </div>
+
+      <div class="title-and-story">
+        <h1 class="page-title">OUR HISTORY</h1>
+
+        <div class="history-story">
+          <p>
+            Epitome started performing January of 2025. Originally, there were only five members ; Arianne, Grix, Marla, Myco, and Nicolai. Every performance they committed in was inside their highschool, Imus National High School. Invited in each event, they strived to perform more. Eventually, the five became six, now including Precious as their keyboardist after playing alongside the christmas concert.
+          </p>
+          <p>
+            Currently, Epitome had done 8 performances inside school and 2 outside gigs -- including their biggest event yet, the SSCAI Fest held at Imus Plaza, May 10, 2026. The band pushes to be the best, living up their name as the <span class="highlight-gold">EPITOME</span> of music.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section class="polaroid-gallery" aria-label="EPITOME Performance Polaroids">
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="artsmonth.jpg" alt="EPITOME Performance 1">
+        </div>
+        <figcaption class="polaroid-caption">
+          ARTS MONTH
+          <span class="polaroid-subcaption"> Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="teacher.jpg" alt="EPITOME Performance 2">
+        </div>
+        <figcaption class="polaroid-caption">
+          TEACHERS' MONTH
+          <span class="polaroid-subcaption">Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="esp.jpg" alt="EPITOME Performance 3">
+        </div>
+        <figcaption class="polaroid-caption">
+          ARRIVE AND JIVE
+          <span class="polaroid-subcaption">Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="cyber.jpg" alt="EPITOME Performance 4">
+        </div>
+        <figcaption class="polaroid-caption">
+          CYBERSECURITY MONTH
+          <span class="polaroid-subcaption">Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="xmas.jpg" alt="EPITOME Performance 5">
+        </div>
+        <figcaption class="polaroid-caption">
+          CHRISTMAS CONCERT
+          <span class="polaroid-subcaption">Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="valentines.jpg" alt="EPITOME Performance 6">
+        </div>
+        <figcaption class="polaroid-caption">
+          VALENTINES CONCERT
+          <span class="polaroid-subcaption">Imus National High School</span>
+        </figcaption>
+      </figure>
+
+      <figure class="polaroid">
+        <div class="polaroid-photo-frame">
+          <img src="sscai.jpg" alt="EPITOME Performance 7">
+        </div>
+        <figcaption class="polaroid-caption">
+          SSCAI MUSIC FEST
+          <span class="polaroid-subcaption">Imus Plaza</span>
+        </figcaption>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>

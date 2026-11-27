@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPITOME — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: linear-gradient(135deg, #E5C150 0%, #C7A846 100%);
+      font-family: 'Times New Roman', Times, serif;
+      color: #1f1a0d;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .portfolio-page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 48px 90px;
+    }
+
+    .top-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      animation: fadeSlideDown 0.7s ease-out both;
+    }
+
+    .nav-badge-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      background-color: #1f1a0d;
+      color: #DFC878;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 2px solid #DFC878;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus-visible {
+      background-color: #DFC878;
+      color: #1f1a0d;
+      transform: translateX(-4px);
+    }
+
+    .circle-badge {
+      width: clamp(115px, 13vw, 170px);
+      height: clamp(115px, 13vw, 170px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #1f1a0d;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .title-and-intro {
+      flex: 1;
+      min-width: 280px;
+      max-width: 920px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: #1f1a0d;
+      text-shadow: 0 3px 12px rgba(255, 255, 255, 0.25);
+    }
+
+    .portfolio-intro {
+      margin: 24px 0 0;
+      padding: 22px 28px;
+      background: rgba(25, 20, 10, 0.88);
+      border-left: 6px solid #DFC878;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(1.15rem, 1.65vw, 1.4rem);
+      line-height: 1.6;
+      color: #ffffff;
+      animation: fadeSlideUp 0.8s ease-out 0.15s both;
+    }
+
+    .division-section {
+      margin-top: 60px;
+      animation: fadeSlideUp 0.8s ease-out both;
+    }
+
+    .division-heading {
+      margin: 0 0 28px;
+      padding-bottom: 10px;
+      border-bottom: 3px solid rgba(31, 26, 13, 0.35);
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1f1a0d;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 28px;
+    }
+
+    .video-card {
+      margin: 0;
+      background: rgba(25, 20, 10, 0.9);
+      border: 2px solid rgba(223, 200, 120, 0.45);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.38);
+      border-color: #DFC878;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #120f08;
+    }
+
+    /* Works for both local <video> files and embedded iframes */
+    .video-wrapper video,
+    .video-wrapper iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      object-fit: cover;
+    }
+
+    .video-caption {
+      padding: 16px 18px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      line-height: 1.45;
+      color: #ffffff;
+    }
+
+    .video-caption strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #DFC878;
+    }
+
+    @media (max-width: 720px) {
+      .portfolio-page {
+        padding: 28px 20px 64px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="portfolio-page">
+    <div class="top-header">
+      <div class="nav-badge-column">
+        <!-- Palitan ang href kung iba ang filename ng main page mo -->
+        <a href="totoo na.html" class="back-btn">&larr; Back to Main</a>
+
+        <img
+          src="epitomesakalamm.jpg"
+          alt="EPITOME circular badge"
+          class="circle-badge"
+        >
+      </div>
+
+      <div class="title-and-intro">
+        <h1 class="page-title">PORTFOLIO</h1>
+
+        <p class="portfolio-intro">
+          To share and to look back through memorable experiences, here are some of Epitome's past rehearsal and performance videos
+        </p>
+      </div>
+    </div>
+
+    <!-- DIVISION 1: REHEARSALS (4 Videos) -->
+    <section class="division-section" aria-labelledby="rehearsals-heading">
+      <h2 id="rehearsals-heading" class="division-heading">REHEARSALS</h2>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="ulan.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="video-caption">
+            <strong>ULAN</strong>
+            Cover ; Cueshe
+          </figcaption>
+        </figure>
+
+
+        <figure class="video-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="pahina.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="video-caption">
+            <strong>PAHINA</strong>
+            Cover ; Cup Of Joe
+          </figcaption>
+        </figure>
+
+       
+      </div>
+    </section>
+
+    <!-- DIVISION 2: PERFORMANCE  -->
+    <section class="division-section" aria-labelledby="performance-heading">
+      <h2 id="performance-heading" class="division-heading">PERFORMANCE</h2>
+
+      <div class="video-grid">
+        
+
+        <figure class="video-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="Epitome 01 of 03.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="video-caption">
+            <strong>KAHIT DI MO ALAM</strong>
+            Cover ; December Avenue
+          </figcaption>
+        </figure>
+
+        <figure class="video-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="Epitome 02 of 03.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="video-caption">
+            <strong>MAGBALIK</strong>
+            Cover ; Callalily
+          </figcaption>
+        </figure>
+
+        <figure class="video-card">
+          <div class="video-wrapper">
+            <video controls preload="metadata">
+              <source src="Epitome 03 of 03.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <figcaption class="video-caption">
+            <strong>KALAPASTANGAN</strong>
+            Cover ; Fitterkarma
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

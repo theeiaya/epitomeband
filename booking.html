@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EPITOME — Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background: linear-gradient(135deg, #E5C150 0%, #C7A846 100%);
+      font-family: 'Times New Roman', Times, serif;
+      color: #1f1a0d;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .booking-page {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 40px 48px 90px;
+    }
+
+    .top-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      animation: fadeSlideDown 0.7s ease-out both;
+    }
+
+    .nav-badge-column {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      background-color: #1f1a0d;
+      color: #DFC878;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 6px;
+      border: 2px solid #DFC878;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .back-btn:hover,
+    .back-btn:focus-visible {
+      background-color: #DFC878;
+      color: #1f1a0d;
+      transform: translateX(-4px);
+    }
+
+    .circle-badge {
+      width: clamp(115px, 13vw, 170px);
+      height: clamp(115px, 13vw, 170px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #1f1a0d;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    .title-and-intro {
+      flex: 1;
+      min-width: 280px;
+      max-width: 920px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      line-height: 0.95;
+      color: #1f1a0d;
+      text-shadow: 0 3px 12px rgba(255, 255, 255, 0.25);
+    }
+
+    .booking-intro {
+      margin: 24px 0 0;
+      padding: 22px 28px;
+      background: rgba(25, 20, 10, 0.88);
+      border-left: 6px solid #DFC878;
+      border-radius: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      font-family: 'Times New Roman', Times, serif;
+      font-size: clamp(1.18rem, 1.7vw, 1.45rem);
+      line-height: 1.6;
+      color: #ffffff;
+      animation: fadeSlideUp 0.8s ease-out 0.15s both;
+    }
+
+    /* Two-column layout: Form on Left, Payment Details on Middle-Right */
+    .booking-layout {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
+      gap: 36px;
+      align-items: center;
+      animation: fadeSlideUp 0.85s ease-out 0.2s both;
+    }
+
+    .form-card {
+      background: rgba(25, 20, 10, 0.92);
+      border: 2px solid rgba(223, 200, 120, 0.55);
+      border-radius: 12px;
+      padding: 32px 30px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+    }
+
+    .form-card-title {
+      margin: 0 0 24px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #DFC878;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label,
+    .form-group .group-label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(223, 200, 120, 0.45);
+      background-color: #141008;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-group input[type="date"] {
+      color-scheme: dark;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: #DFC878;
+      box-shadow: 0 0 0 3px rgba(223, 200, 120, 0.22);
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      padding-top: 4px;
+    }
+
+    .radio-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      accent-color: #D4A017;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .conditional-field {
+      display: none;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(223, 200, 120, 0.08);
+      border-left: 4px solid #D4A017;
+    }
+
+    .conditional-field.active {
+      display: block;
+    }
+
+    /* Payment Details Box on Middle-Right */
+    .payment-card {
+      background: rgba(25, 20, 10, 0.92);
+      border: 2px solid #DFC878;
+      border-radius: 12px;
+      padding: 30px 28px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.34);
+    }
+
+    .payment-heading {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(223, 200, 120, 0.35);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #DFC878;
+    }
+
+    .rate-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #ffffff;
+    }
+
+    .rate-list li {
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+    }
+
+    .rate-list li:last-child {
+      border-bottom: none;
+    }
+
+    .rate-price {
+      color: #D4A017;
+      font-weight: 700;
+    }
+
+    .venue-heading {
+      margin: 24px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(223, 200, 120, 0.35);
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #DFC878;
+    }
+
+    .venue-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: #ffffff;
+    }
+
+    .venue-list li {
+      padding: 5px 0;
+    }
+
+    /* Paragraph below the form */
+    .finalization-note {
+      margin-top: 32px;
+      padding: 20px 26px;
+      background: rgba(25, 20, 10, 0.92);
+      border: 2px solid #D4A017;
+      border-radius: 10px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1rem, 1.45vw, 1.18rem);
+      font-weight: 500;
+      line-height: 1.6;
+      color: #ffffff;
+    }
+
+    .finalization-note a {
+      color: #DFC878;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .finalization-note a:hover,
+    .finalization-note a:focus-visible {
+      color: #ffffff;
+    }
+
+    @media (max-width: 900px) {
+      .booking-layout {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .booking-page {
+        padding: 28px 20px 64px;
+      }
+
+      .form-card,
+      .payment-card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="booking-page">
+    <div class="top-header">
+      <div class="nav-badge-column">
+        <!-- Palitan ang href kung iba ang filename ng main page mo -->
+        <a href="totoo na.html" class="back-btn">&larr; Back to Main</a>
+
+        <img
+          src="epitomesakalamm.jpg"
+          alt="EPITOME circular badge"
+          class="circle-badge"
+        >
+      </div>
+
+      <div class="title-and-intro">
+        <h1 class="page-title">BOOKING</h1>
+
+        <p class="booking-intro">
+          If you find our performances interesting, you may hire us for a gig!
+        </p>
+      </div>
+    </div>
+
+    <div class="booking-layout">
+      <div>
+        <form class="form-card" id="bookingForm" aria-label="Gig Booking Form">
+          <h2 class="form-card-title">Booking Details</h2>
+
+          <div class="form-group">
+            <label for="hiringManager">Name of Hiring Manager</label>
+            <input type="text" id="hiringManager" name="hiringManager" placeholder="Enter full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="Street, Barangay, City/Municipality" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactNo">Contact No.</label>
+            <input type="tel" id="contactNo" name="contactNo" placeholder="09XX XXX XXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="eventName">Event</label>
+            <input type="text" id="eventName" name="eventName" placeholder="e.g., School Event, Birthday, Festival, Party" required>
+          </div>
+
+          <div class="form-group">
+            <label for="performanceDate">Date of performance</label>
+            <input type="date" id="performanceDate" name="performanceDate" required>
+          </div>
+
+          <div class="form-group">
+            <span class="group-label">Able to provide equipment?</span>
+            <div class="radio-row">
+              <label class="radio-option">
+                <input type="radio" name="provideEquipment" value="yes" id="equipYes">
+                <span>Yes</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="provideEquipment" value="no" id="equipNo" checked>
+                <span>No</span>
+              </label>
+            </div>
+
+            <div class="conditional-field" id="equipmentDetailsBox">
+              <label for="equipmentAvailable">Equipment / Instruments available</label>
+              <textarea
+                id="equipmentAvailable"
+                name="equipmentAvailable"
+                rows="3"
+                placeholder="List available PA system, amplifiers, drum set, keyboard stand, microphones, etc."
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0;">
+            <label for="paymentWay">Way of Payment</label>
+            <select id="paymentWay" name="paymentWay" required>
+              <option value="" disabled selected>Select payment method</option>
+              <option value="GCash">GCash</option>
+              <option value="Maya">Maya</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Cash on Event Day">Cash on Event Day</option>
+            </select>
+          </div>
+        </form>
+
+        <p class="finalization-note">
+          Please take a screenshot of your form and email it to
+          <a href="mailto:epitome01.ph@gmail.com">epitome01.ph@gmail.com</a>
+          for finalization
+        </p>
+      </div>
+
+      <aside class="payment-card" aria-label="Payment Details and Venue Fees">
+        <h2 class="payment-heading">Payment Details</h2>
+        <ul class="rate-list">
+          <li><span class="rate-price">P900</span> : 3 songs</li>
+          <li><span class="rate-price">P1,300</span> : 6-7 songs</li>
+          <li><span class="rate-price">P1,550</span>: 8-9 songs</li>
+          <li><span class="rate-price">P2,000</span>: 10 songs and above (additional <span class="rate-price">P200</span> if 15 exceeded)</li>
+        </ul>
+
+        <h3 class="venue-heading">Venue fees:</h3>
+        <ul class="venue-list">
+          <li>Within Imus City : <span class="rate-price">No additional</span></li>
+          <li>Neighboring City (Dasmarinas, Bacoor, etc.): additional <span class="rate-price">P99</span></li>
+          <li>Farther: Additional <span class="rate-price">P129</span></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    const equipYes = document.getElementById('equipYes');
+    const equipNo = document.getElementById('equipNo');
+    const equipmentDetailsBox = document.getElementById('equipmentDetailsBox');
+    const equipmentAvailable = document.getElementById('equipmentAvailable');
+
+    function toggleEquipmentField() {
+      if (equipYes.checked) {
+        equipmentDetailsBox.classList.add('active');
+        equipmentAvailable.required = true;
+      } else {
+        equipmentDetailsBox.classList.remove('active');
+        equipmentAvailable.required = false;
+        equipmentAvailable.value = '';
+      }
+    }
+
+    equipYes.addEventListener('change', toggleEquipmentField);
+    equipNo.addEventListener('change', toggleEquipmentField);
+  </script>
+</body>
+</html>
